@@ -97,25 +97,30 @@ async function main() {
     paulKeypair = createKeypairFromFile(__dirname + "/../accounts/paul.json");
     johnKeypair = createKeypairFromFile(__dirname + "/../accounts/john.json");
 
-    // We'll start by airdropping some lamports to Paul & John.
-    await connection.confirmTransaction(
-        await connection.requestAirdrop(
-            paulKeypair.publicKey,
-            LAMPORTS_PER_SOL,
-        )
-    );
-    await connection.confirmTransaction(
-        await connection.requestAirdrop(
-            johnKeypair.publicKey,
-            LAMPORTS_PER_SOL,
-        )
-    );
+    // const latestBlockHash = await connection.getLatestBlockhash();
 
-    // John sends some SOL to Ringo.
-    console.log("John sends some SOL to Ringo...");
-    console.log(`   John's public key: ${johnKeypair.publicKey}`);
-    console.log(`   Ringo's public key: ${ringoKeypair.publicKey}`);
-    await sendLamports(johnKeypair, ringoKeypair.publicKey, 5000000);
+    // const airdropSignaturePaul = await connection.requestAirdrop(
+    //     paulKeypair.publicKey,
+    //     LAMPORTS_PER_SOL,
+    // );
+
+    // const airdropSignatureJohn = await connection.requestAirdrop(
+    //     johnKeypair.publicKey,
+    //     LAMPORTS_PER_SOL,
+    // );
+
+    // We'll start by airdropping some lamports to Paul & John.
+    // await connection.confirmTransaction({
+    //     blockhash: latestBlockHash.blockhash,
+    //     lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
+    //     signature: airdropSignaturePaul,
+    // });
+
+    // await connection.confirmTransaction({
+    //     blockhash: latestBlockHash.blockhash,
+    //     lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
+    //     signature: airdropSignatureJohn,
+    // });
 
     // Paul sends some SOL to George.
     console.log("Paul sends some SOL to George...");
@@ -123,11 +128,18 @@ async function main() {
     console.log(`   George's public key: ${georgeKeypair.publicKey}`);
     await sendLamports(paulKeypair, georgeKeypair.publicKey, 4000000);
 
-    // George sends some SOL over to John.
-    console.log("George sends some SOL over to John...");
-    console.log(`   George's public key: ${georgeKeypair.publicKey}`);
-    console.log(`   John's public key: ${johnKeypair.publicKey}`);
-    await sendLamports(georgeKeypair, johnKeypair.publicKey, 2000000);
+    // // George sends some SOL over to John.
+    // console.log("George sends some SOL over to John...");
+    // console.log(`   George's public key: ${georgeKeypair.publicKey}`);
+    // console.log(`   John's public key: ${johnKeypair.publicKey}`);
+    // await sendLamports(georgeKeypair, johnKeypair.publicKey, 2000000);
+
+    // // John sends some SOL to Ringo.
+    // console.log("John sends some SOL to Ringo...");
+    // console.log(`   John's public key: ${johnKeypair.publicKey}`);
+    // console.log(`   Ringo's public key: ${ringoKeypair.publicKey}`);
+    // await sendLamports(johnKeypair, ringoKeypair.publicKey, 5000000);
+
 }
 
 
