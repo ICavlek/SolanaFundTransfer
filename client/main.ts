@@ -10,11 +10,12 @@ async function main() {
 
     let connection: Connection = getConnection('devnet');
     let programId: PublicKey = getProgramID();
-    const accountPaul: SolanaAccount = new SolanaAccount("paul", connection, programId);
-    const accountGeorge: SolanaAccount = new SolanaAccount("george", connection, programId);
+    const accountJohn: SolanaAccount = new SolanaAccount("john", connection, programId);
+    const accountMark: SolanaAccount = new SolanaAccount("mark", connection, programId);
 
-    // await accountPaul.requestAirdropSolana(1);
-    await accountPaul.sendSolana(accountGeorge, 0.4);
+    // await accountJohn.requestAirdropSolana(1);
+    // await accountMark.requestAirdropSolana(1);
+    await accountJohn.sendSolana(accountMark, 0.4);
 }
 
 
