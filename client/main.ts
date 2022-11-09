@@ -10,6 +10,7 @@ import {
 } from '@solana/web3.js';
 import { readFileSync } from "fs";
 import path from 'path';
+import { getConnection } from './_connection/connection'
 
 const lo = require("buffer-layout");
 // const BN = require("bn.js");
@@ -79,9 +80,7 @@ async function sendLamports(from: Keypair, to: PublicKey, amount: number) {
 
 async function main() {
 
-    connection = new Connection(
-        `https://api.${SOLANA_NETWORK}.solana.com`, 'confirmed'
-    );
+    connection = getConnection('devnet');
 
     programKeypair = createKeypairFromFile(
         path.join(
