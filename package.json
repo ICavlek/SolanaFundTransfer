@@ -4,7 +4,7 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Coding-and-Crypto/Rust-Solana-Tutorial.git"
+    "url": "https://github.com/ICavlek/SolanaFundTransfer.git"
   },
   "scripts": {
     "clean": "./_cicd/cicd.sh clean",
@@ -12,7 +12,7 @@
     "build": "./_cicd/cicd.sh build",
     "deploy": "./_cicd/cicd.sh deploy",
     "reset-and-build": "./_cicd/cicd.sh reset-and-build",
-    "simulation": "ts-node ./client/main.ts"
+    "sendFunds": "ts-node ./client/main.ts"
   },
   "dependencies": {
     "@solana/web3.js": "^1.33.0",
