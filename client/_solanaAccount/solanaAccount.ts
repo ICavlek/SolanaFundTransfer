@@ -28,9 +28,9 @@ export class SolanaAccount {
     }
 
     async sendSolana(to: SolanaAccount, amount: number) {
-        console.log("Paul sends some SOL to George...");
-        console.log(`   Paul's public key: ${this.keypair.publicKey}`);
-        console.log(`   George's public key: ${to.keypair.publicKey}`);
+        console.log(`${this.name} sends some SOL to ${to.name}...`);
+        console.log(`   ${this.name}'s public key: ${this.keypair.publicKey}`);
+        console.log(`   ${to.name}'s public key: ${to.keypair.publicKey}`);
 
         let data = Buffer.alloc(8); // 8 bytes
         const lo = require("buffer-layout");
