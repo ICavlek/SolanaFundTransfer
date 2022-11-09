@@ -9,34 +9,9 @@ import {
     TransactionInstruction,
 } from '@solana/web3.js';
 import { readFileSync } from "fs";
-import path from 'path';
-import { getConnection } from './_connection/connection'
+import { getConnection } from "./_connection/connection";
+import { getProgramID } from "./_solanaProgramKeyPair/solanaProgramKeyPair";
 
-const lo = require("buffer-layout");
-// const BN = require("bn.js");
-
-
-
-/**
- * Vars
- */
-
-const SOLANA_NETWORK = "devnet";
-
-let connection: Connection;
-let programKeypair: Keypair;
-let programId: PublicKey;
-
-let ringoKeypair: Keypair;
-let georgeKeypair: Keypair;
-let paulKeypair: Keypair;
-let johnKeypair: Keypair;
-
-
-
-/**
- * Helper functions.
- */
 
 function createKeypairFromFile(path: string): Keypair {
     return Keypair.fromSecretKey(
@@ -49,10 +24,10 @@ function createKeypairFromFile(path: string): Keypair {
  * Here we are sending lamports using the Rust program we wrote.
  * So this looks familiar. We're just hitting our program with the proper instructions.
  */
-async function sendLamports(from: Keypair, to: PublicKey, amount: number) {
+async function sendLamports(connection: Connection, programId: PublicKey, from: Keypair, to: PublicKey, amount: number) {
 
-    let data = Buffer.alloc(8) // 8 bytes
-    // lo.ns64("value").encode(new BN(amount), data);
+    let data = Buffer.alloc(8); // 8 bytes
+    const lo = require("buffer-layout");
     lo.ns64("value").encode(amount, data);
 
     let ins = new TransactionInstruction({
@@ -80,21 +55,14 @@ async function sendLamports(from: Keypair, to: PublicKey, amount: number) {
 
 async function main() {
 
-    connection = getConnection('devnet');
-
-    programKeypair = createKeypairFromFile(
-        path.join(
-            path.resolve(__dirname, '../_dist/program'),
-            'program-keypair.json'
-        )
-    );
-    programId = programKeypair.publicKey;
+    let connection: Connection = getConnection('devnet');
+    let programId: PublicKey = getProgramID();
 
     // Our sample members are Ringo, George, Paul & John.
-    ringoKeypair = createKeypairFromFile(__dirname + "/../accounts/ringo.json");
-    georgeKeypair = createKeypairFromFile(__dirname + "/../accounts/george.json");
-    paulKeypair = createKeypairFromFile(__dirname + "/../accounts/paul.json");
-    johnKeypair = createKeypairFromFile(__dirname + "/../accounts/john.json");
+    let ringoKeypair: Keypair = createKeypairFromFile(__dirname + "/../accounts/ringo.json");
+    let georgeKeypair: Keypair = createKeypairFromFile(__dirname + "/../accounts/george.json");
+    let paulKeypair: Keypair = createKeypairFromFile(__dirname + "/../accounts/paul.json");
+    let johnKeypair: Keypair = createKeypairFromFile(__dirname + "/../accounts/john.json");
 
     // const latestBlockHash = await connection.getLatestBlockhash();
 
@@ -125,7 +93,7 @@ async function main() {
     console.log("Paul sends some SOL to George...");
     console.log(`   Paul's public key: ${paulKeypair.publicKey}`);
     console.log(`   George's public key: ${georgeKeypair.publicKey}`);
-    await sendLamports(paulKeypair, georgeKeypair.publicKey, 4000000);
+    await sendLamports(connection, programId, paulKeypair, georgeKeypair.publicKey, 4000000);
 
     // // George sends some SOL over to John.
     // console.log("George sends some SOL over to John...");
