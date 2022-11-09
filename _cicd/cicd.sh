@@ -1,6 +1,7 @@
 #! /bin/bash
 
 SOLANA_PROGRAMS=("program")
+chmod -R a+rwx program/
 
 case $1 in
     "reset")
