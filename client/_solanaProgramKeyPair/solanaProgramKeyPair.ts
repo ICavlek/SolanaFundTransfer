@@ -1,6 +1,6 @@
 import { Keypair, PublicKey } from "@solana/web3.js";
-import { readFileSync } from "fs";
 import path from "path";
+import { createKeypairFromFile } from "../_keypairFromFile/keypairFromFile";
 
 export function getProgramID(): PublicKey {
     let programKeypair: Keypair = createKeypairFromFile(
@@ -10,10 +10,4 @@ export function getProgramID(): PublicKey {
         )
     );
     return programKeypair.publicKey;
-}
-
-function createKeypairFromFile(path: string): Keypair {
-    return Keypair.fromSecretKey(
-        Buffer.from(JSON.parse(readFileSync(path, "utf-8")))
-    )
 }

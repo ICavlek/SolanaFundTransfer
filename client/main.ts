@@ -8,16 +8,9 @@ import {
     Transaction,
     TransactionInstruction,
 } from '@solana/web3.js';
-import { readFileSync } from "fs";
 import { getConnection } from "./_connection/connection";
 import { getProgramID } from "./_solanaProgramKeyPair/solanaProgramKeyPair";
-
-
-function createKeypairFromFile(path: string): Keypair {
-    return Keypair.fromSecretKey(
-        Buffer.from(JSON.parse(readFileSync(path, "utf-8")))
-    )
-}
+import { createKeypairFromFile } from "./_keypairFromFile/keypairFromFile";
 
 
 /**
