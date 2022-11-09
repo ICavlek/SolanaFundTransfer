@@ -1,7 +1,7 @@
 #! /bin/bash
 
-SOLANA_PROGRAMS=("program")
-chmod -R a+rwx program/
+SOLANA_PROGRAMS=("fund_transfer")
+chmod -R a+rwx fund_transfer/
 
 case $1 in
     "reset")
@@ -15,7 +15,7 @@ case $1 in
         for program in "${SOLANA_PROGRAMS[@]}"; do
             cargo clean --manifest-path=./$program/Cargo.toml
         done
-        rm -rf _dist/program
+        rm -rf _dist/.
         ;;
     "clean")
         rm -rf ./node_modules
@@ -24,11 +24,11 @@ case $1 in
         done;;
     "build")
         for program in "${SOLANA_PROGRAMS[@]}"; do
-            cargo build-sbf --manifest-path=./$program/Cargo.toml --sbf-out-dir=./_dist/program
+            cargo build-sbf --manifest-path=./$program/Cargo.toml --sbf-out-dir=./_dist
         done;;
     "deploy")
         for program in "${SOLANA_PROGRAMS[@]}"; do
-            solana program deploy _dist/program/$program.so
+            solana program deploy _dist/$program.so
         done;;
     "reset-and-build")
         rm -rf ./node_modules
@@ -38,11 +38,11 @@ case $1 in
                 solana program close $x --bypass-warning; 
             fi
         done
-        rm -rf _dist/program
+        rm -rf _dist/.
         for program in "${SOLANA_PROGRAMS[@]}"; do
             cargo clean --manifest-path=./$program/Cargo.toml
-            cargo build-sbf --manifest-path=./$program/Cargo.toml --sbf-out-dir=./_dist/program
-            solana program deploy _dist/program/$program.so
+            cargo build-sbf --manifest-path=./$program/Cargo.toml --sbf-out-dir=./_dist
+            solana program deploy _dist/$program.so
         done
         npm install
         solana program show --programs

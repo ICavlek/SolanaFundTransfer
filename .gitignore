@@ -1,5 +1,5 @@
 package-lock.json
 node_modules/
-program/target/
-program/Cargo.lock
+fund_transfer/target/
+fund_transfer/Cargo.lock
 _dist
