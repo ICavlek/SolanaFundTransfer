@@ -15,7 +15,7 @@ async function main() {
 
     // await accountJohn.requestAirdropSolana(1);
     // await accountMark.requestAirdropSolana(1);
-    await accountJohn.sendSolana(accountMark, 0.4);
+    await accountJohn.sendSolana(accountMark, 0.2);
 }
 
 

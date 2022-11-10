@@ -14,7 +14,7 @@ export class SolanaAccount {
         this.programId = programId;
     }
 
-    async requestAirdropSolana(amount: number) {
+    public async requestAirdropSolana(amount: number) {
         const latestBlockHash = await this.connection.getLatestBlockhash();
         const airdropSignature = await this.connection.requestAirdrop(
             this.keypair.publicKey,
@@ -27,7 +27,7 @@ export class SolanaAccount {
         });
     }
 
-    async sendSolana(to: SolanaAccount, amount: number) {
+    public async sendSolana(to: SolanaAccount, amount: number) {
         console.log(`${this.name} sends some SOL to ${to.name}...`);
         console.log(`   ${this.name}'s public key: ${this.keypair.publicKey}`);
         console.log(`   ${to.name}'s public key: ${to.keypair.publicKey}`);
