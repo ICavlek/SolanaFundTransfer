@@ -5,7 +5,7 @@ import { createKeypairFromFile } from "../_keypairFromFile/keypairFromFile";
 export function getProgramID(): PublicKey {
     let programKeypair: Keypair = createKeypairFromFile(
         path.join(
-            path.resolve(__dirname, '../../_dist'),
+            path.resolve(__dirname, '../../../_dist'),
             'fund_transfer-keypair.json'
         )
     );
