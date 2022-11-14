@@ -51,5 +51,6 @@ export class SolanaAccount {
             new Transaction().add(ins),
             [this.keypair]
         );
+        console.log(`Transfer has successfully finished!`);
     }
 }
