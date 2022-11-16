@@ -1,5 +1,5 @@
 import { getConnection } from "../../app/_connection/connection";
-import { ClientBaseError } from "../../app/_error/error";
+import { ConnectionError } from "../../app/_error/error";
 
 describe('getConnection test suite', () => {
     test('mainnet connection', () => {
@@ -14,6 +14,6 @@ describe('getConnection test suite', () => {
         const t = () => {
             getConnection('dinamo');
         };
-        expect(t).toThrow(ClientBaseError);
+        expect(t).toThrow(ConnectionError);
     });
 });

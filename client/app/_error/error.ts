@@ -4,3 +4,10 @@ export class ClientBaseError extends Error {
         Object.setPrototypeOf(this, ClientBaseError.prototype);
     }
 }
+
+export class ConnectionError extends ClientBaseError {
+    constructor() {
+        super('Wrong network specified. Should be devnet or mainnet.');
+        Object.setPrototypeOf(this, ConnectionError.prototype);
+    }
+}
