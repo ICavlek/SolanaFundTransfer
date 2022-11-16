@@ -13,10 +13,8 @@ async function runFundTransfer(requestAirdrop: boolean = false) {
     const accountJohn: SolanaAccount = new SolanaAccount("john", connection, programId);
     const accountMark: SolanaAccount = new SolanaAccount("mark", connection, programId);
 
-    if (requestAirdrop) {
-        await accountJohn.requestAirdropSolana(1);
-        await accountMark.requestAirdropSolana(1);
-    }
+    await accountJohn.requestAirdropSolana(1);
+    await accountMark.requestAirdropSolana(1);
 
     await accountJohn.sendSolana(accountMark, 0.2);
 }

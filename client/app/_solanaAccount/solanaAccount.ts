@@ -1,5 +1,5 @@
 import { createKeypairFromFile } from "../_keypairFromFile/keypairFromFile";
-import { Connection, Keypair, LAMPORTS_PER_SOL, PublicKey, sendAndConfirmTransaction, SystemProgram, Transaction, TransactionInstruction } from "@solana/web3.js";
+import { Connection, Keypair, LAMPORTS_PER_SOL, PublicKey, sendAndConfirmTransaction, SystemProgram, Transaction, TransactionInstruction, SolanaJSONRPCError } from "@solana/web3.js";
 
 export class SolanaAccount {
     name: string;
@@ -15,16 +15,20 @@ export class SolanaAccount {
     }
 
     public async requestAirdropSolana(amount: number) {
-        const latestBlockHash = await this.connection.getLatestBlockhash();
-        const airdropSignature = await this.connection.requestAirdrop(
-            this.keypair.publicKey,
-            amount * LAMPORTS_PER_SOL,
-        );
-        await this.connection.confirmTransaction({
-            blockhash: latestBlockHash.blockhash,
-            lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
-            signature: airdropSignature,
-        });
+        try {
+            const latestBlockHash = await this.connection.getLatestBlockhash();
+            const airdropSignature = await this.connection.requestAirdrop(
+                this.keypair.publicKey,
+                amount * LAMPORTS_PER_SOL,
+            );
+            await this.connection.confirmTransaction({
+                blockhash: latestBlockHash.blockhash,
+                lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
+                signature: airdropSignature,
+            });
+        } catch (e) {
+            console.log(`Failed to airdrop solana due to connection request timeout.`);
+        }
     }
 
     public async sendSolana(to: SolanaAccount, amount: number) {
