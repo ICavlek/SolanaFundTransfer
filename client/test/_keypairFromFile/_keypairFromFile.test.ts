@@ -1,5 +1,5 @@
 import { createKeypairFromFile } from "../../app/_keypairFromFile/keypairFromFile";
-import { ClientBaseError } from "../../app/_error/error";
+import { NoFileError } from "../../app/_error/error";
 
 describe('createKeypairFromFile test suite', () => {
     test('keypair john', () => {
@@ -8,5 +8,12 @@ describe('createKeypairFromFile test suite', () => {
 
     test('keypair mark', () => {
         createKeypairFromFile(__dirname + `/../../../accounts/mark.json`);
+    });
+
+    test('keypair wrong', () => {
+        const t = () => {
+            createKeypairFromFile(__dirname + `/../../../accounts/dinamo.json`);
+        };
+        expect(t).toThrow(NoFileError);
     });
 });

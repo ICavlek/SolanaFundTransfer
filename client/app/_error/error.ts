@@ -11,3 +11,10 @@ export class ConnectionError extends ClientBaseError {
         Object.setPrototypeOf(this, ConnectionError.prototype);
     }
 }
+
+export class NoFileError extends ClientBaseError {
+    constructor(filePath: string) {
+        super(`File ${filePath} does not exist`);
+        Object.setPrototypeOf(this, NoFileError.prototype);
+    }
+}
