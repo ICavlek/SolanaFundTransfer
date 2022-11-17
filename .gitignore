@@ -3,5 +3,3 @@ node_modules/
 fund_transfer/target/
 fund_transfer/Cargo.lock
 _dist
-.vscode/
-src_javascript/

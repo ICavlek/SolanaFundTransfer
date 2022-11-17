@@ -7,7 +7,7 @@ import { getProgramID } from "./_solanaProgramKeyPair/solanaProgramKeyPair";
 import { SolanaAccount } from "./_solanaAccount/solanaAccount";
 import { ClientBaseError } from "./_error/error";
 
-async function runFundTransfer() {
+async function runFundTransfer(requestAirdrop: boolean = false) {
     const connection: Connection = getConnection('devnet');
     const programId: PublicKey = getProgramID();
     const accountJohn: SolanaAccount = new SolanaAccount("john", connection, programId);

@@ -12,7 +12,7 @@
     "build": "./_cicd/cicd.sh build",
     "deploy": "./_cicd/cicd.sh deploy",
     "reset-and-build": "./_cicd/cicd.sh reset-and-build",
-    "sendFunds": "ts-node ./src_typescript/client/app/main.ts",
+    "sendFunds": "ts-node ./client/app/main.ts",
     "test": "jest"
   },
   "dependencies": {
