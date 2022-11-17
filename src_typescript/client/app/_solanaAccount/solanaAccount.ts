@@ -9,7 +9,7 @@ export class SolanaAccount {
 
     constructor(name: string, connection: Connection, programId: PublicKey) {
         this.name = name;
-        this.keypair = createKeypairFromFile(__dirname + `/../../../accounts/${name}.json`);
+        this.keypair = createKeypairFromFile(__dirname + `/../../../../accounts/${name}.json`);
         this.connection = connection;
         this.programId = programId;
     }

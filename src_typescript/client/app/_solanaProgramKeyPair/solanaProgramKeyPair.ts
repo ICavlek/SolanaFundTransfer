@@ -3,7 +3,7 @@ import { createKeypairFromFile } from "../_keypairFromFile/keypairFromFile";
 
 export function getProgramID(): PublicKey {
     let programKeypair: Keypair = createKeypairFromFile(
-        __dirname + `/../../../_dist/fund_transfer-keypair.json`
+        __dirname + `/../../../../_dist/fund_transfer-keypair.json`
     );
     return programKeypair.publicKey;
 }
