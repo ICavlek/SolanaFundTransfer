@@ -1,7 +1,6 @@
 #! /bin/bash
 
 SOLANA_PROGRAMS=("fund_transfer")
-chmod -R a+rwx fund_transfer/
 
 case $1 in
     "reset")
