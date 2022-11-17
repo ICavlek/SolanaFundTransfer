@@ -1,7 +1,7 @@
 package-lock.json
 node_modules/
-fund_transfer/target/
-fund_transfer/Cargo.lock
+src_rust/fund_transfer/target/
+src_rust/fund_transfer/Cargo.lock
 _dist
 .vscode/
 src_javascript/
