@@ -1,5 +1,5 @@
 # SolanaFundTransfer
-Example of sending funds on Solana network
+Example of sending funds on Solana network. All credits for idea to https://www.youtube.com/watch?v=AZo-tMgw1kQ&list=PLUBKxx7QjtVnU3hkPc8GF1Jh4DE7cf4n1&index=5&ab_channel=Coding%26Crypto.
 
 ### Creating your own solana keypair
 ```shell
